@@ -1,0 +1,91 @@
+// mixins
+
+// 상하좌우 가운데 정렬
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// float 해제
+@mixin clear {
+  &::after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
+
+// 구조 숨김
+@mixin blind {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
+// 텍스트 숨김
+@mixin blind-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+}
+
+// 비율 이미지
+@mixin ratio-img($ratio) {
+  overflow: hidden;
+  @if ($ratio == '1:1') {
+    padding-top: 100%;
+  }
+  @if ($ratio == '4:3') {
+    padding-top: 75%;
+  }
+  @if ($ratio == '16:9') {
+    padding-top: 56.25%;
+  }
+  @if ($ratio == '2:1') {
+    padding-top: 50%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+// 말줄임 (rem base)
+@mixin ellipsis($lines: 1) {
+  display: block; // inline 요소에 적용 대비, -webkit-box 지원 안함 대비
+  @if ($lines > 1) {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    white-space: normal; // 플리킹 모듈 nowrap 상속 대비
+  } @else {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@mixin tmp-img($width, $height) {
+  display: inline-block;
+  width: #{$width}px;
+  height: #{$height}px;
+  background: #000;
+  vertical-align: top;
+}

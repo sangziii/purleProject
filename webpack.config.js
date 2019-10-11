@@ -44,9 +44,7 @@ const config = {
     path: OUTPUT_DIR,
     filename: "[name].js"
   },
-  plugins: [
-    new ExtractCSS('styles.css')
-  ]
+  plugins: [new ExtractCSS('styles.css')]
 }
 
 module.exports = config;

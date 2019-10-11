@@ -1,4 +1,4 @@
-// import "../scss/styles.scss";
+import "../scss/styles.scss";
 
 // const testFunc = async () => await console.log("webpack bunling test");
 
